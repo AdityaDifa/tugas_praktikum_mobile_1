@@ -1,4 +1,8 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:http_sharedpreference/pages/halaman_anime.dart';
+import 'package:http_sharedpreference/pages/halaman_kucing.dart';
 import 'package:http_sharedpreference/pages/halaman_profile.dart';
 import 'package:http_sharedpreference/pages/halaman_utama.dart';
 
@@ -40,27 +44,39 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ListView.builder(
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return InkWell(
+    return ListView(
+      children: [
+        GestureDetector(
             onTap: () {
-              // Tambahkan aksi yang diinginkan ketika gambar ditekan di sini
-              print('Gambar ke-$index ditekan');
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HalamanKucing()));
             },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.network(
-                "https://picsum.photos/200",
-                width: 200,
-                height: 200,
-                fit: BoxFit.cover,
+            child: Material(
+              color: Colors.transparent,
+              child: Container(
+                height: 100,
+                color: Colors.yellow,
+                child: Center(
+                  child: Text("Fakta Kucing", style: TextStyle(fontSize: 30)),
+                ),
               ),
-            ),
-          );
-        },
-      ),
+            )),
+        GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HalamanAnime()));
+            },
+            child: Material(
+              color: Colors.transparent,
+              child: Container(
+                height: 100,
+                color: Colors.lightBlue,
+                child: Center(
+                  child: Text("Quotes Animeh", style: TextStyle(fontSize: 30)),
+                ),
+              ),
+            ))
+      ],
     );
   }
 }
